@@ -1,0 +1,19 @@
+{
+  "name": "bewuga",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Raph Development",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "electron": "^19.0.6",
+    "fs": "^0.0.1-security",
+    "videoshow": "^0.1.12"
+  }
+}

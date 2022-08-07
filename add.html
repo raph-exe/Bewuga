@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Add Message</title>
+    </head>
+    <body>
+        <style>
+            body {
+                font-family: sans-serif;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center;
+                background-image: url('https://i.pinimg.com/originals/d7/d8/db/d7d8dbf3811c797e5d2cc364743ae3a7.gif');
+            }
+            .add {
+                outline: none;
+                background: black;
+                border: 2px solid white;
+                border-radius: 5px;
+                color: white;
+                padding: 10px;
+                display: block;
+                width: 90%;
+                margin: 0 auto;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            ::-webkit-input-placeholder {
+                color: white;
+            }
+            button {
+                cursor: pointer;
+                outline: none;
+                background: black;
+                border: 2px solid white;
+                border-radius: 5px;
+                color: white;
+                padding: 10px;
+                display: block;
+                width: 90%;
+                margin: 0 auto;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        </style>
+        <input placeholder="Username" class="add username" id="username">
+        <input placeholder="Avatar URL" class="add avatar" id="avatar">
+        <input placeholder="Message" class="add message" id="message">
+        <button onclick="send()">Add Message</button>
+        <script>
+            const { ipcRenderer } = require('electron'); 
+            function send() {
+                const username = document.getElementById('username').value;
+                const avatar = document.getElementById('avatar').value;
+                const message = document.getElementById('message').value;
+                ipcRenderer.send('message', 'add', username, avatar, message);
+            }
+        </script>
+    </body>
+</html>

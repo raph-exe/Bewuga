@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Render</title>
+    </head>
+    <body>
+        <style>
+            body {
+                font-family: sans-serif;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center;
+                background-image: url('https://i.pinimg.com/originals/d7/d8/db/d7d8dbf3811c797e5d2cc364743ae3a7.gif');
+            }
+            .render {
+                outline: none;
+                background: black;
+                border: 2px solid white;
+                border-radius: 5px;
+                color: white;
+                padding: 10px;
+                display: block;
+                width: 90%;
+                margin: 0 auto;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            ::-webkit-input-placeholder {
+                color: white;
+            }
+            button {
+                cursor: pointer;
+                outline: none;
+                background: black;
+                border: 2px solid white;
+                border-radius: 5px;
+                color: white;
+                padding: 10px;
+                display: block;
+                width: 90%;
+                margin: 0 auto;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        </style>
+        <input placeholder="Output Path" class="render path" id="path" readonly onclick="selectOutput()">
+        <button onclick="send()">Export</button>
+        <script>
+            const { ipcRenderer } = require('electron'); 
+            function send() {
+                const path = document.getElementById('path').value;
+                ipcRenderer.send('message', 'export', path);
+            }
+
+            function selectOutput() {
+                ipcRenderer.send('message', 'select-output');
+                ipcRenderer.on('selected' , (event, path) => {
+                    document.getElementById('path').value = path;
+                });
+            }
+        </script>
+    </body>
+</html>
